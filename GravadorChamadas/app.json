@@ -1,35 +1,39 @@
 {
   "expo": {
-    "name": "GravadorChamadas",
-    "slug": "GravadorChamadas",
+    "name": "Gravador de Chamadas",
+    "slug": "call-recorder",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.isptec.callrecorder",
       "infoPlist": {
-        "NSMicrophoneUsageDescription": "Esta aplicação necessita de acesso ao microfone para gravar chamadas telefónicas.",
+        "NSMicrophoneUsageDescription": "Esta aplicação necessita de acesso ao microfone para gravar chamadas telefónicas. As gravações são guardadas localmente no seu dispositivo.",
         "NSPhotoLibraryUsageDescription": "Esta aplicação necessita de acesso à biblioteca de fotos para guardar ficheiros de áudio.",
+        "NSContactsUsageDescription": "Esta aplicação necessita de acesso aos contactos para identificar números de telefone durante as gravações.",
         "UIBackgroundModes": [
           "audio",
           "fetch"
         ]
-      },
-      "bundleIdentifier": "com.isptec.callrecorder"
+      }
     },
+
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       },
-      "edgeToEdgeEnabled": true,
       "permissions": [
         "RECORD_AUDIO",
         "READ_PHONE_STATE",
@@ -38,17 +42,25 @@
         "WRITE_EXTERNAL_STORAGE",
         "READ_EXTERNAL_STORAGE",
         "FOREGROUND_SERVICE",
-        "WAKE_LOCK"
+        "WAKE_LOCK",
+        "SYSTEM_ALERT_WINDOW",
+        "ACCESS_NETWORK_STATE",
+        "INTERNET"
       ],
       "package": "com.isptec.callrecorder"
     },
+
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/images/favicon.png",
       "name": "Gravador de Chamadas",
-      "description": "Uma aplicação para gravar chamadas telefónicas.",
+      "shortName": "CallRecorder",
+      "lang": "pt",
+      "scope": "/",
       "themeColor": "#E53E3E",
       "backgroundColor": "#FFFFFF",
       "display": "standalone",
+      "orientation": "portrait",
+      
       "meta": {
         "viewport": "width=device-width, initial-scale=1.0, viewport-fit=cover",
         "description": "Aplicação web para gravação de chamadas telefónicas - ISPTEC",
@@ -59,16 +71,42 @@
         "apple-mobile-web-app-capable": "yes",
         "apple-mobile-web-app-status-bar-style": "black-translucent"
       },
+
       "startUrl": "/",
       "preferRelatedApplications": false,
-      "icons": {
-        "16": "./assets/images/icon-16x16.png",
-        "32": "./assets/images/icon-32x32.png",
-        "48": "./assets/images/icon-48x48.png",
-        "128": "./assets/images/icon-128x128.png",
-        "192": "./assets/images/icon-192x192.png",
-        "512": "./assets/images/icon-512x512.png"
-      },
+      
+      "icons": [
+        {
+          "src": "./assets/images/icon-16x16.png",
+          "sizes": "16x16",
+          "type": "image/png"
+        },
+        {
+          "src": "./assets/images/icon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        },
+        {
+          "src": "./assets/images/icon-48x48.png",
+          "sizes": "48x48",
+          "type": "image/png"
+        },
+        {
+          "src": "./assets/images/icon-128x128.png",
+          "sizes": "128x128",
+          "type": "image/png"
+        },
+        {
+          "src": "./assets/images/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "./assets/images/icon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
 
       "splash": {
         "image": "./assets/images/splash-web.png",
@@ -76,17 +114,11 @@
         "backgroundColor": "#E53E3E",
         "imageWidth": 600,
         "imageHeight": 600
-      },
-      "build": {
-        "babel": {
-          "include": [
-            "react-native-reanimated"
-          ]
-        }
       }
     },
+
     "plugins": [
-       [
+      [
         "expo-notifications",
         {
           "icon": "./assets/images/notification-icon.png",
@@ -101,19 +133,19 @@
           "stopOnTerminate": false,
           "startOnBoot": true
         }
-      ],
-      [
-        "expo-pwa"
       ]
     ],
+
     "extra": {
       "eas": {
         "projectId": "your-project-id-here"
       }
     },
+
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
+
     "updates": {
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/your-project-id"

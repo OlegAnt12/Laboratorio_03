@@ -21,7 +21,6 @@
     "expo-intent-launcher": "~13.0.7",
     "expo-notifications": "~0.32.12",
     "expo-permissions": "^14.4.0",
-    "expo-pwa": "^0.0.127",
     "expo-status-bar": "~3.0.8",
     "expo-task-manager": "~14.0.8",
     "react": "19.1.0",
