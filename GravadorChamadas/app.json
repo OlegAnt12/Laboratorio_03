@@ -13,14 +13,34 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Esta aplicação necessita de acesso ao microfone para gravar chamadas telefónicas.",
+        "NSPhotoLibraryUsageDescription": "Esta aplicação necessita de acesso à biblioteca de fotos para guardar ficheiros de áudio.",
+        "UIBackgroundModes": [
+          "audio",
+          "fetch"
+        ]
+      },
+      "bundleIdentifier": "com.isptec.callrecorder"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "RECORD_AUDIO",
+        "READ_PHONE_STATE",
+        "READ_CALL_LOG",
+        "PROCESS_OUTGOING_CALLS",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "FOREGROUND_SERVICE",
+        "WAKE_LOCK"
+      ],
+      "package": "com.isptec.callrecorder"
     },
     "web": {
       "favicon": "./assets/favicon.png"
