@@ -43,7 +43,80 @@
       "package": "com.isptec.callrecorder"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Gravador de Chamadas",
+      "description": "Uma aplicação para gravar chamadas telefónicas.",
+      "themeColor": "#E53E3E",
+      "backgroundColor": "#FFFFFF",
+      "display": "standalone",
+      "meta": {
+        "viewport": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "description": "Aplicação web para gravação de chamadas telefónicas - ISPTEC",
+        "keywords": "gravação, chamadas, áudio, react native, expo",
+        "author": "ISPTEC",
+        "charset": "utf-8",
+        "theme-color": "#E53E3E",
+        "apple-mobile-web-app-capable": "yes",
+        "apple-mobile-web-app-status-bar-style": "black-translucent"
+      },
+      "startUrl": "/",
+      "preferRelatedApplications": false,
+      "icons": {
+        "16": "./assets/images/icon-16x16.png",
+        "32": "./assets/images/icon-32x32.png",
+        "48": "./assets/images/icon-48x48.png",
+        "128": "./assets/images/icon-128x128.png",
+        "192": "./assets/images/icon-192x192.png",
+        "512": "./assets/images/icon-512x512.png"
+      },
+
+      "splash": {
+        "image": "./assets/images/splash-web.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#E53E3E",
+        "imageWidth": 600,
+        "imageHeight": 600
+      },
+      "build": {
+        "babel": {
+          "include": [
+            "react-native-reanimated"
+          ]
+        }
+      }
+    },
+    "plugins": [
+       [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#E53E3E",
+          "iosDisplayInForeground": true
+        }
+      ],
+      [
+        "expo-background-fetch",
+        {
+          "minimumInterval": 60,
+          "stopOnTerminate": false,
+          "startOnBoot": true
+        }
+      ],
+      [
+        "expo-pwa"
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/your-project-id"
     }
   }
 }
