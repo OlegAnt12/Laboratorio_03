@@ -3,6 +3,7 @@ import * as Permissions from 'expo-permissions';
 import * as IntentLauncher from 'expo-intent-launcher';
 
 class PermissionManager {
+  // Tipos de permissões necessárias
   static PERMISSION_TYPES = {
     AUDIO: 'AUDIO_RECORDING',
     PHONE: 'PHONE',
@@ -11,6 +12,7 @@ class PermissionManager {
     BACKGROUND: 'BACKGROUND'
   };
 
+  // Mapeamento de permissões por plataforma
   static getPlatformPermissions() {
     if (Platform.OS === 'ios') {
       return {
@@ -28,6 +30,7 @@ class PermissionManager {
     }
   }
 
+  // Solicitar permissão individual
   static async requestPermission(permissionType) {
     try {
       const platformPermissions = this.getPlatformPermissions();
@@ -52,6 +55,7 @@ class PermissionManager {
     }
   }
 
+  // Verificar estado atual das permissões
   static async checkPermissionStatus(permissionType) {
     try {
       const platformPermissions = this.getPlatformPermissions();
@@ -75,6 +79,7 @@ class PermissionManager {
     }
   }
 
+  // Solicitar todas as permissões necessárias
   static async requestAllPermissions() {
     const permissions = {};
     const permissionTypes = Object.values(this.PERMISSION_TYPES);
@@ -87,6 +92,7 @@ class PermissionManager {
     return permissions;
   }
 
+  // Verificar se todas as permissões essenciais foram concedidas
   static async hasEssentialPermissions() {
     const essentialPermissions = [
       this.PERMISSION_TYPES.AUDIO,
@@ -103,6 +109,7 @@ class PermissionManager {
     return true;
   }
 
+  // Mostrar diálogo explicativo para permissão negada
   static showPermissionExplanation(permissionType) {
     const messages = {
       [this.PERMISSION_TYPES.AUDIO]: {
@@ -141,6 +148,7 @@ class PermissionManager {
     );
   }
 
+  // Abrir definições da aplicação
   static async openAppSettings() {
     if (Platform.OS === 'ios') {
       await Linking.openURL('app-settings:');
@@ -152,14 +160,17 @@ class PermissionManager {
     }
   }
 
+  // Verificar e solicitar permissões em lote
   static async checkAndRequestPermissions() {
     const results = {};
     const permissionTypes = Object.values(this.PERMISSION_TYPES);
 
+    // Primeiro verificar o estado atual
     for (const type of permissionTypes) {
       results[type] = await this.checkPermissionStatus(type);
     }
 
+    // Solicitar apenas as que não estão concedidas
     const permissionsToRequest = permissionTypes.filter(
       type => results[type].status !== 'granted' && results[type].status !== 'unsupported'
     );
@@ -167,12 +178,21 @@ class PermissionManager {
     for (const type of permissionsToRequest) {
       results[type] = await this.requestPermission(type);
       
+      // Se foi negada, mostrar explicação
       if (results[type].status === 'denied') {
         this.showPermissionExplanation(type);
       }
     }
 
     return results;
+  }
+
+  // Monitorizar mudanças nas permissões (apenas Android)
+  static startPermissionMonitoring(callback) {
+    if (Platform.OS !== 'android') return;
+
+    // Em produção, implementar com EventEmitter ou contexto
+    this.permissionCallback = callback;
   }
 }
 

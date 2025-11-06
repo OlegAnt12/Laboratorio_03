@@ -169,7 +169,10 @@ const PermissionGate = ({ children, onPermissionsUpdate }) => {
           </Text>
           
           <TouchableOpacity 
-            style={[styles.continueButton, !essentialGranted && styles.continueButtonDisabled]}
+            style={[
+              styles.continueButton,
+              !essentialGranted && styles.continueButtonDisabled
+            ]}
             onPress={loadPermissions}
             disabled={!essentialGranted}
           >
